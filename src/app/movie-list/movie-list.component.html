@@ -1,0 +1,25 @@
+<div>
+  <h4>Filters</h4>
+</div>
+
+<div class="input-group">
+  <label>Title</label>
+  <input type="text" class="form-control" [(ngModel)]="title" />
+  <label>Release Year </label>
+  <input type="text" class="form-control" [(ngModel)]="releaseYear" />
+</div>
+<br>
+
+<ul>
+  <li *ngFor="let movie of movieList | movieFilter : title : releaseYear">
+    <h5>{{ movie.title }}</h5>
+    <button style="float: right;">
+      <span [routerLink]="[movie.id]">Details</span>
+    </button>
+    <p>
+      Release Date: {{ movie.release_date }} &nbsp;
+      Budget: {{ movie.budget | currencyFormatter }} &nbsp;
+      Duration: {{ movie.duration | timeToHourMinute }}
+    </p>
+  </li>
+</ul>
